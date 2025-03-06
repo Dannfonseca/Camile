@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camile Astrologia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header" id="home">
+    <div class="container">
+        <h1 class="logo">
+            <a href="#home" class="logo-link">Camile Astrologia</a>
+        </h1>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li><a href="#hero-whatsapp" class="nav-link">Sobre</a></li> <!-- Link atualizado -->
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-whatsapp"> <!-- Adicionado ID para o link do menu -->
+        <div class="hero-content">
+            <h2>Descubra Seu Caminho nas Estrelas</h2>
+            <p>Consultas personalizadas de Tarô e Astrologia para iluminar sua jornada</p>
+            <a href="https://wa.me/559191946826" class="btn-primary" target="_blank">Agende sua Consulta</a>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="section">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌙</div>
+                    <h3>Mandala Astrológica</h3>
+                    <p>Energia do Mês + 4 perguntas</p>
+                    <span class="price">R$ 100,00</span>
+                    <a href="https://wa.me/559191946826?text=Interesse%20em%20Mandala%20Astrológica" class="btn-secondary" target="_blank">Agendar</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Leitura Amorosa</h3>
+                    <p>Orientação para sua vida amorosa</p>
+                    <span class="price">R$ 50,00</span>
+                    <a href="https://wa.me/559191946826?text=Interesse%20em%20Leitura%20Amorosa" class="btn-secondary" target="_blank">Agendar</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Leitura Espiritual</h3>
+                    <p>Conexão com sua essência</p>
+                    <span class="price">R$ 40,00</span>
+                    <a href="https://wa.me/559191946826?text=Interesse%20em%20Leitura%20Espiritual" class="btn-secondary" target="_blank">Agendar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Perguntas Avulsas -->
+    <section id="perguntas" class="section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Avulsas</h2>
+            <div class="counter-container">
+                <p>Quantidade de perguntas:</p>
+                <div class="counter">
+                    <button class="counter-btn" id="decrementBtn">-</button>
+                    <span id="questionCount">4</span>
+                    <button class="counter-btn" id="incrementBtn">+</button>
+                </div>
+                <p class="price">Valor: R$ <span id="totalPrice">40</span>,00</p>
+                <a href="#" class="btn-primary" id="buyQuestionsBtn" target="_blank">Comprar Perguntas</a>
+            </div>
+            <p class="info">* Mínimo de 4 perguntas (R$ 10,00 cada)</p>
+        </div>
+    </section>
+
+        <!-- Galeria de Fotos -->
+        <section id="galeria" class="section">
+            <div class="container">
+                <h2 class="section-title">Galeria de Fotos</h2>
+                <div id="outer" class="outer center">
+                    <div id="middle" class="middle center round">
+                        <div id="inner" class="inner round"></div>
+                    </div>
+                </div>
+                <p class="title one"></p>
+                <p class="title two"></p>
+                <button id="nextButton" class="btn-primary">Próxima Foto</button>
+            </div>
+        </section>
+
+    <!-- Formulário de Contato -->
+    <section id="contato" class="section">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/russelmytho@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" id="assunto" name="assunto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Camile Astrologia. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://instagram.com/ciganacamile" target="_blank" class="social-link">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/instagram.svg" alt="Instagram">
+                    Instagram
+                </a>
+                <a href="https://wa.me/559191946826" target="_blank" class="social-link">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/whatsapp.svg" alt="WhatsApp">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
