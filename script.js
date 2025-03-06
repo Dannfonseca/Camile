@@ -2,31 +2,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Rolagem para o topo ao atualizar a página
     window.scrollTo(0, 0);
 
-   // Menu Mobile
-   const menuToggle = document.getElementById('menuToggle');
-   const nav = document.getElementById('nav');
+    // Menu Mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
 
-   // Abrir/fechar menu ao clicar no ícone do menu
-   menuToggle.addEventListener('click', () => {
-       nav.classList.toggle('active');
-   });
+    // Abrir/fechar menu ao clicar no ícone do menu
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
 
-   // Fechar menu ao clicar em um link
-   document.querySelectorAll('.nav-link').forEach(link => {
-       link.addEventListener('click', () => {
-           nav.classList.remove('active');
-       });
-   });
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+    });
 
-   // Fechar menu ao clicar fora dele
-   document.addEventListener('click', (event) => {
-       const isClickInsideMenu = nav.contains(event.target);
-       const isClickOnToggle = menuToggle.contains(event.target);
+    // Fechar menu ao clicar fora dele
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = nav.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
 
-       if (!isClickInsideMenu && !isClickOnToggle && nav.classList.contains('active')) {
-           nav.classList.remove('active');
-       }
-   });
+        if (!isClickInsideMenu && !isClickOnToggle && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+        }
+    });
 
     // Sistema de contagem de perguntas
     const decrementBtn = document.getElementById('decrementBtn');
@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
+    // Efeito de transição de imagens
     const titles = document.querySelectorAll(".title");
     const root = document.querySelector(":root");
     const outer = document.getElementById('outer');
@@ -100,124 +101,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = [
         {
             url: "imagens/assets/imagem1.jpeg", // Caminho da primeira imagem
-            
+            name: "Energia do Mês"
         },
         {
             url: "imagens/assets/imagem2.jpeg", // Caminho da segunda imagem
-            
+            name: "Leitura Amorosa"
         },
         {
             url: "imagens/assets/imagem3.jpeg", // Caminho da terceira imagem
-            
+            name: "Leitura Espiritual"
         },
         {
             url: "imagens/assets/imagem4.jpeg", // Caminho da quarta imagem
-            
+            name: "Mandala Astrológica"
         },
         {
             url: "imagens/assets/imagem5.jpeg", // Caminho da quinta imagem
-            
+            name: "Consulta Personalizada"
         }
     ];
     let currentIndex = 0;
+    let isAnimating = false; // Controla se uma animação está em andamento
 
-    function changeElements(isFirstRender = false) {
-        if (!isFirstRender) currentIndex++;
-        const curImage = images[currentIndex % images.length];
+    // Função para avançar as imagens ao clicar na foto
+    function changeElements() {
+        if (isAnimating) return; // Impede cliques durante a animação
+        isAnimating = true; // Bloqueia novos cliques
+
+        // Avança para a próxima imagem
+        currentIndex = (currentIndex + 1) % images.length;
+        const curImage = images[currentIndex];
         const nextImage = images[(currentIndex + 1) % images.length];
-        nextButton.setAttribute("disabled", true);
 
-        const changeTitles = () => {
-            titles[0].textContent = curImage.name;
-            titles[1].textContent = nextImage.name;
-        };
+        // Atualiza os títulos
+        titles[0].textContent = curImage.name;
+        titles[1].textContent = nextImage.name;
 
-        const changeImages = () => {
-            root.style.setProperty("--image-1", `url(${curImage.url})`);
-            root.style.setProperty("--image-2", `url(${nextImage.url})`);
-        };
-
-        if (!isFirstRender) {
-            runTextAnimations(changeTitles);
-            runSpinAnimations(changeImages);
-        } else {
-            nextButton.removeAttribute("disabled");
-            changeImages();
-            changeTitles();
-        }
-        recalculateImagePosition();
+        // Inicia a animação de giro
+        runSpinAnimations(curImage, nextImage);
     }
 
-        // Função para avançar as imagens ao clicar na foto
-        function changeElements(isFirstRender = false) {
-            if (!isFirstRender) currentIndex++;
-            const curImage = images[currentIndex % images.length];
-            const nextImage = images[(currentIndex + 1) % images.length];
-    
-            const changeTitles = () => {
-                titles[0].textContent = curImage.name;
-                titles[1].textContent = nextImage.name;
-            };
-    
-            const changeImages = () => {
-                root.style.setProperty("--image-1", `url(${curImage.url})`);
-                root.style.setProperty("--image-2", `url(${nextImage.url})`);
-            };
-    
-            if (!isFirstRender) {
-                runTextAnimations(changeTitles);
-                runSpinAnimations(changeImages);
-            } else {
-                changeImages();
-                changeTitles();
-            }
-            recalculateImagePosition();
-        }
-    
-        function runTextAnimations(endCallback) {
-            const animationTimeInMs = 550;
-            titles[0].classList.add("active");
-            titles[1].classList.add("active");
-    
-            setTimeout(() => {
-                endCallback();
-                titles[0].classList.remove("active");
-                titles[1].classList.remove("active");
-            }, animationTimeInMs);
-        }
-    
-        function runSpinAnimations(middleCallback) {
-            const animationTimeInMs = 2000;
-            const firstCircleSpin = 1300;
-            outer.classList.add("active");
-            root.style.setProperty("--after-opacity", "0");
-            root.style.setProperty("--before-opacity", "1");
-    
-            setTimeout(() => {
-                middleCallback();
-                root.style.setProperty("--after-opacity", "1");
-                root.style.setProperty("--before-opacity", "0");
-            }, firstCircleSpin / 2);
-    
-            setTimeout(() => {
-                outer.classList.remove("active");
-            }, animationTimeInMs);
-        }
-    
-        function recalculateImagePosition() {
-            const middleBounds = middle.getBoundingClientRect();
-            root.style.setProperty(
-                "--middle-position",
-                `-${middleBounds.left}px -${middleBounds.top}px`
-            );
-            const innerBounds = inner.getBoundingClientRect();
-            root.style.setProperty(
-                "--inner-position",
-                `-${innerBounds.left}px -${innerBounds.top}px`
-            );
-        }
-        outer.addEventListener('click', () => changeElements());
+    // Função para executar a animação de giro
+    function runSpinAnimations(curImage, nextImage) {
+        // Esconde a imagem atual imediatamente
+        root.style.setProperty("--before-opacity", "0");
 
+        // Define a nova imagem com opacidade 0 (invisível)
+        root.style.setProperty("--image-2", `url(${nextImage.url})`);
+        root.style.setProperty("--after-opacity", "0");
 
-    changeElements(true);
+        // Inicia a animação de giro
+        outer.classList.add("active");
+
+        // Durante o giro, aumenta a opacidade da nova imagem
+        setTimeout(() => {
+            root.style.setProperty("--after-opacity", "1");
+        }, 650); // Metade do tempo da animação
+
+        // Finaliza a animação e atualiza a imagem principal
+        setTimeout(() => {
+            outer.classList.remove("active");
+            root.style.setProperty("--image-1", `url(${curImage.url})`);
+            isAnimating = false; // Libera novos cliques após 2 segundos
+        }, 1300); // Tempo total da animação
+    }
+
+    // Adiciona evento de clique na foto para avançar as imagens
+    outer.addEventListener('click', () => {
+        if (!isAnimating) {
+            changeElements();
+        }
+    });
+
+    // Inicializa a galeria
+    changeElements();
 });
