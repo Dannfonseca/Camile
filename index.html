@@ -7,31 +7,41 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="description" content="Consultas personalizadas de Tarô e Astrologia para iluminar sua jornada. Agende sua consulta agora!">
+    <meta name="keywords" content="astrologia, tarô, consulta, horóscopo, leitura amorosa, leitura espiritual">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXX-X');
+    </script>
 </head>
 <body>
-<!-- Header -->
-<header class="header" id="home">
-    <div class="container">
-        <h1 class="logo">
-            <a href="#home" class="logo-link">Camile Astrologia</a>
-        </h1>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <nav class="nav" id="nav">
-            <ul class="nav-list">
-                <li><a href="#hero-whatsapp" class="nav-link">Sobre</a></li> <!-- Link atualizado -->
-                <li><a href="#servicos" class="nav-link">Serviços</a></li>
-                <li><a href="#contato" class="nav-link">Contato</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <!-- Header -->
+    <header class="header" id="home">
+        <div class="container">
+            <h1 class="logo">
+                <a href="#home" class="logo-link">Camile Astrologia</a>
+            </h1>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#hero-whatsapp" class="nav-link">Sobre</a></li>
+                    <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero-whatsapp"> <!-- Adicionado ID para o link do menu -->
+    <section class="hero" id="hero-whatsapp">
         <div class="hero-content">
             <h2>Descubra Seu Caminho nas Estrelas</h2>
             <p>Consultas personalizadas de Tarô e Astrologia para iluminar sua jornada</p>
-            <a href="https://wa.me/559191946826" class="btn-primary" target="_blank">Agende sua Consulta</a>
+            <a href="https://wa.me/559191946826" class="btn-primary" target="_blank">Agende Agora</a>
         </div>
     </section>
 
@@ -65,7 +75,6 @@
         </div>
     </section>
 
-
     <!-- Perguntas Avulsas -->
     <section id="perguntas" class="section">
         <div class="container">
@@ -84,19 +93,19 @@
         </div>
     </section>
 
-<!-- Galeria de Fotos -->
-<section id="galeria" class="section">
-    <div class="container">
-        <h2 class="section-title">Galeria de Fotos</h2>
-        <div id="outer" class="outer center">
-            <div id="middle" class="middle center round">
-                <div id="inner" class="inner round"></div>
+    <!-- Galeria de Fotos -->
+    <section id="galeria" class="section">
+        <div class="container">
+            <h2 class="section-title">Galeria de Fotos</h2>
+            <div id="outer" class="outer center">
+                <div id="middle" class="middle center round">
+                    <div id="inner" class="inner round"></div>
+                </div>
             </div>
+            <p class="title one"></p>
+            <p class="title two"></p>
         </div>
-        <p class="title one"></p>
-        <p class="title two"></p>
-    </div>
-</section>
+    </section>
 
     <!-- Formulário de Contato -->
     <section id="contato" class="section">
@@ -119,6 +128,9 @@
                     <div class="form-group">
                         <label for="mensagem">Mensagem:</label>
                         <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="h-captcha" data-sitekey="your-site-key"></div>
                     </div>
                     <button type="submit" class="btn-primary">Enviar</button>
                 </form>

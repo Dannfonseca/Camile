@@ -9,12 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abrir/fechar menu ao clicar no ícone do menu
     menuToggle.addEventListener('click', () => {
         nav.classList.toggle('active');
+        menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰'; // Alterna entre ícone de hambúrguer e "X"
     });
 
     // Fechar menu ao clicar em um link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('active');
+            menuToggle.textContent = '☰'; // Volta ao ícone de hambúrguer
         });
     });
 
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!isClickInsideMenu && !isClickOnToggle && nav.classList.contains('active')) {
             nav.classList.remove('active');
+            menuToggle.textContent = '☰'; // Volta ao ícone de hambúrguer
         }
     });
 
@@ -35,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPrice = document.getElementById('totalPrice');
     const buyQuestionsBtn = document.getElementById('buyQuestionsBtn');
 
-    let count = 4;
+    let count = 3;
     const pricePerQuestion = 10;
 
     function updateCount(newCount) {
-        if (newCount >= 4) {
+        if (newCount >= 3) {
             count = newCount;
             questionCount.textContent = count;
             totalPrice.textContent = count * pricePerQuestion;
@@ -67,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: 'smooth',
+                    block: 'start' // Rola até o topo do elemento
                 });
             }
         });
@@ -90,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
-    // Efeito de transição de imagens
+    // Efeito de transição de imagens na galeria
     const titles = document.querySelectorAll(".title");
     const root = document.querySelector(":root");
     const outer = document.getElementById('outer');
@@ -101,23 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = [
         {
             url: "imagens/assets/imagem1.jpeg", // Caminho da primeira imagem
-            name: "Energia do Mês"
+            
         },
         {
             url: "imagens/assets/imagem2.jpeg", // Caminho da segunda imagem
-            name: "Leitura Amorosa"
+            
         },
         {
             url: "imagens/assets/imagem3.jpeg", // Caminho da terceira imagem
-            name: "Leitura Espiritual"
+            
         },
         {
             url: "imagens/assets/imagem4.jpeg", // Caminho da quarta imagem
-            name: "Mandala Astrológica"
+            
         },
         {
             url: "imagens/assets/imagem5.jpeg", // Caminho da quinta imagem
-            name: "Consulta Personalizada"
+            
         }
     ];
     let currentIndex = 0;
@@ -175,4 +179,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializa a galeria
     changeElements();
+
+    // Validação em tempo real do formulário de contato
+    const contactForm = document.querySelector('.contact-form form');
+    const nomeInput = document.getElementById('nome');
+    const emailInput = document.getElementById('email');
+    const assuntoInput = document.getElementById('assunto');
+    const mensagemInput = document.getElementById('mensagem');
+
+    nomeInput.addEventListener('input', () => {
+        if (nomeInput.value.trim() === '') {
+            nomeInput.setCustomValidity('Por favor, insira seu nome.');
+        } else {
+            nomeInput.setCustomValidity('');
+        }
+    });
+
+    emailInput.addEventListener('input', () => {
+        if (!emailInput.checkValidity()) {
+            emailInput.setCustomValidity('Por favor, insira um e-mail válido.');
+        } else {
+            emailInput.setCustomValidity('');
+        }
+    });
+
+    assuntoInput.addEventListener('input', () => {
+        if (assuntoInput.value.trim() === '') {
+            assuntoInput.setCustomValidity('Por favor, insira um assunto.');
+        } else {
+            assuntoInput.setCustomValidity('');
+        }
+    });
+
+    mensagemInput.addEventListener('input', () => {
+        if (mensagemInput.value.trim() === '') {
+            mensagemInput.setCustomValidity('Por favor, insira uma mensagem.');
+        } else {
+            mensagemInput.setCustomValidity('');
+        }
+    });
+
+    // Envio do formulário
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (contactForm.checkValidity()) {
+            alert('Mensagem enviada com sucesso!');
+            contactForm.reset();
+        } else {
+            alert('Por favor, preencha todos os campos corretamente.');
+        }
+    });
 });
