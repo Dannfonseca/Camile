@@ -105,23 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = [
         {
             url: "imagens/assets/imagem1.jpeg", // Caminho da primeira imagem
-            
         },
         {
             url: "imagens/assets/imagem2.jpeg", // Caminho da segunda imagem
-            
         },
         {
             url: "imagens/assets/imagem3.jpeg", // Caminho da terceira imagem
-            
         },
         {
             url: "imagens/assets/imagem4.jpeg", // Caminho da quarta imagem
-            
         },
         {
             url: "imagens/assets/imagem5.jpeg", // Caminho da quinta imagem
-            
         }
     ];
     let currentIndex = 0;
@@ -228,5 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Por favor, preencha todos os campos corretamente.');
         }
+    });
+
+    // Adicionar evento de clique na logo para recarregar a página e rolar até o topo
+    const logoLink = document.getElementById('logoLink');
+    logoLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Impede o comportamento padrão do link
+        window.location.reload(); // Recarrega a página
+        window.scrollTo(0, 0); // Rola até o topo após o recarregamento
     });
 });
